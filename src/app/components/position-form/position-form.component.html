@@ -1,10 +1,8 @@
 <form
-  *ngIf="currentWorkingMode === WorkingModeEnum.ChangeCords"
   class="position-form"
   [formGroup]="coordinatesForm"
   (ngSubmit)="onSubmit()"
 >
-  <h2>Coordinates change</h2>
   <div class="form-control">
     <label for="latitude">Latitude</label>
     <input
