@@ -47,7 +47,7 @@ export class MapComponent implements OnInit, OnDestroy {
   private initMap(): void {
     this.map = L.map('map', {
       center: [50.090683, 19.974544],
-      zoom: 15,
+      zoom: 14,
       zoomControl: false,
     });
 

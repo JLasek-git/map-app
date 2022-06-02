@@ -1,6 +1,7 @@
 <button
   class="base-button"
   [ngClass]="currentWorkingMode === buttonWorkingMode ? 'active' : ''"
+  [type]="buttonType"
   (click)="handleBtnClick()"
 >
   {{ buttonText }}

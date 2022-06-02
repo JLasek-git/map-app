@@ -7,11 +7,11 @@
   font-weight: bold;
   cursor: pointer;
 
-  &.active {
+  &:active {
     background-color: #ffffff;
   }
 
-  &:active {
+  &.active {
     background-color: #ffffff;
   }
 }

@@ -32,7 +32,6 @@ export class PositionFormComponent implements OnInit, OnDestroy {
     this.workingModeSubscription = this.workingModeService
       .onWorkingModeChange()
       .subscribe((value) => {
-        console.log(value);
         this.currentWorkingMode = value;
       });
   }

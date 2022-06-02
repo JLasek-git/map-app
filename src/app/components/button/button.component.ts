@@ -18,6 +18,7 @@ import {
 export class ButtonComponent implements OnInit, OnDestroy {
   @Input() buttonText: string = '';
   @Input() buttonWorkingMode!: WorkingMode | undefined;
+  @Input() buttonType: 'submit' | 'reset' | 'button' = 'button';
   @Output() btnClick = new EventEmitter();
 
   currentWorkingMode: WorkingMode = WorkingMode.RealTimeModel;
