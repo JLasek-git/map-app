@@ -1,16 +1,19 @@
+import { Subscription } from 'rxjs';
 import { WorkingModeService } from './../../services/working-mode.service';
 import { WorkingMode } from 'src/app/enums/working-mode';
 import { MapService } from './../../services/map.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   WorkingModeEnum = WorkingMode;
   currentWorkingMode: WorkingMode = WorkingMode.RealTimeModel;
+
+  workingModeSubscription!: Subscription;
 
   constructor(
     private mapService: MapService,
@@ -18,9 +21,15 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.workingModeService.onWorkingModeChange().subscribe((value) => {
-      this.currentWorkingMode = value;
-    });
+    this.workingModeSubscription = this.workingModeService
+      .onWorkingModeChange()
+      .subscribe((value) => {
+        this.currentWorkingMode = value;
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.workingModeSubscription.unsubscribe();
   }
 
   handleZoomInClicked(): void {

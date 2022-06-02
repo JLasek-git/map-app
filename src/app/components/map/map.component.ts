@@ -1,5 +1,5 @@
 import { MapService } from './../../services/map.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import * as L from 'leaflet';
 import { Subscription } from 'rxjs';
 
@@ -8,9 +8,10 @@ import { Subscription } from 'rxjs';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss'],
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements OnInit, OnDestroy {
   map!: L.Map;
-  subscription!: Subscription;
+
+  zoomInSubscription!: Subscription;
   zoomOutSubscription!: Subscription;
   changePositionSubsciption!: Subscription;
 
@@ -18,9 +19,11 @@ export class MapComponent implements OnInit {
 
   ngOnInit(): void {
     this.initMap();
-    this.subscription = this.mapService.onClick().subscribe((value) => {
-      this.map.zoomIn(value);
-    });
+    this.zoomInSubscription = this.mapService
+      .onZoomInClick()
+      .subscribe((value) => {
+        this.map.zoomIn(value);
+      });
 
     this.zoomOutSubscription = this.mapService
       .onZoomOutClicked()
@@ -33,6 +36,12 @@ export class MapComponent implements OnInit {
       .subscribe((value) => {
         this.map.panTo(value);
       });
+  }
+
+  ngOnDestroy(): void {
+    this.zoomInSubscription.unsubscribe();
+    this.zoomOutSubscription.unsubscribe();
+    this.changePositionSubsciption.unsubscribe();
   }
 
   private initMap(): void {

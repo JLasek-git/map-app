@@ -2,7 +2,7 @@ import { WorkingMode } from './../../enums/working-mode';
 import { WorkingModeService } from './../../services/working-mode.service';
 import { Subscription } from 'rxjs';
 import { MapService } from './../../services/map.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import * as L from 'leaflet';
 
@@ -11,8 +11,7 @@ import * as L from 'leaflet';
   templateUrl: './position-form.component.html',
   styleUrls: ['./position-form.component.scss'],
 })
-export class PositionFormComponent implements OnInit {
-  //Data
+export class PositionFormComponent implements OnInit, OnDestroy {
   coordinatesForm: FormGroup = new FormGroup({
     lng: new FormControl('', [Validators.required]),
     lat: new FormControl('', [Validators.required]),
@@ -21,7 +20,6 @@ export class PositionFormComponent implements OnInit {
   currentWorkingMode!: WorkingMode;
   WorkingModeEnum = WorkingMode;
 
-  //Subscriptions
   positionFormSubscription!: Subscription;
   workingModeSubscription!: Subscription;
 
@@ -39,7 +37,10 @@ export class PositionFormComponent implements OnInit {
       });
   }
 
-  // Getters
+  ngOnDestroy(): void {
+    this.workingModeSubscription.unsubscribe();
+  }
+
   get longitude() {
     return this.coordinatesForm.get('lng');
   }
@@ -48,7 +49,6 @@ export class PositionFormComponent implements OnInit {
     return this.coordinatesForm.get('lat');
   }
 
-  // Functions
   closeForm(): void {
     this.workingModeService.changeWorkingMode(
       this.WorkingModeEnum.RealTimeModel

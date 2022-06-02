@@ -24,7 +24,7 @@ export class MapService {
     this.changePositionSubject.next(newPosition);
   }
 
-  onClick(): Observable<any> {
+  onZoomInClick(): Observable<any> {
     return this.zoomInSubject.asObservable();
   }
 
