@@ -1,5 +1,5 @@
 <form
-  *ngIf="showPositionForm"
+  *ngIf="currentWorkingMode === WorkingModeEnum.ChangeCords"
   class="position-form"
   [formGroup]="coordinatesForm"
   (ngSubmit)="onSubmit()"

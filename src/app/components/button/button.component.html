@@ -1,1 +1,7 @@
-<button class="base-button" (click)="handleBtnClick()">{{ buttonText }}</button>
+<button
+  class="base-button"
+  [ngClass]="currentWorkingMode === buttonWorkingMode ? 'active' : ''"
+  (click)="handleBtnClick()"
+>
+  {{ buttonText }}
+</button>

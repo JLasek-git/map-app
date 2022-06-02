@@ -41,10 +41,6 @@
       font-size: 12px;
       width: 100%;
       color: red;
-      & .shake-error {
-        -webkit-animation: horizontal-shaking 0.4s both;
-        animation: horizontal-shaking 0.4s both;
-      }
     }
   }
 
@@ -52,23 +48,5 @@
     display: flex;
     margin-top: 15px;
     gap: 20px;
-  }
-}
-
-@keyframes horizontal-shaking {
-  0% {
-    transform: translateX(0);
-  }
-  25% {
-    transform: translateX(5px);
-  }
-  50% {
-    transform: translateX(-5px);
-  }
-  75% {
-    transform: translateX(5px);
-  }
-  100% {
-    transform: translateX(0);
   }
 }

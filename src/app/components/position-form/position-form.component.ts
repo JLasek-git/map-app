@@ -1,10 +1,10 @@
+import { WorkingMode } from './../../enums/working-mode';
+import { WorkingModeService } from './../../services/working-mode.service';
 import { Subscription } from 'rxjs';
-import { UiService } from './../../services/ui.service';
 import { MapService } from './../../services/map.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import * as L from 'leaflet';
-import { isNgTemplate } from '@angular/compiler';
 
 @Component({
   selector: 'app-position-form',
@@ -18,16 +18,25 @@ export class PositionFormComponent implements OnInit {
     lat: new FormControl('', [Validators.required]),
   });
   showPositionForm!: boolean;
+  currentWorkingMode!: WorkingMode;
+  WorkingModeEnum = WorkingMode;
 
   //Subscriptions
-  subscription!: Subscription;
+  positionFormSubscription!: Subscription;
+  workingModeSubscription!: Subscription;
 
-  constructor(private mapService: MapService, private uiService: UiService) {}
+  constructor(
+    private mapService: MapService,
+    private workingModeService: WorkingModeService
+  ) {}
 
   ngOnInit(): void {
-    this.subscription = this.uiService.onToggle().subscribe((value) => {
-      this.showPositionForm = value;
-    });
+    this.workingModeSubscription = this.workingModeService
+      .onWorkingModeChange()
+      .subscribe((value) => {
+        console.log(value);
+        this.currentWorkingMode = value;
+      });
   }
 
   // Getters
@@ -41,24 +50,25 @@ export class PositionFormComponent implements OnInit {
 
   // Functions
   closeForm(): void {
-    this.uiService.closePositionForm();
+    this.workingModeService.changeWorkingMode(
+      this.WorkingModeEnum.RealTimeModel
+    );
     this.coordinatesForm.reset();
   }
 
-  validateForm(): boolean {
-    return !this.latitude?.invalid && !this.longitude?.invalid;
-  }
-
   onSubmit(): void {
-    if (this.validateForm()) {
-      const newPosition: L.LatLng = new L.LatLng(
-        Number(this.coordinatesForm.value.lat),
-        Number(this.coordinatesForm.value.lng)
-      );
-      this.mapService.changePosition(newPosition);
-      this.uiService.closePositionForm();
-    } else {
+    if (!this.coordinatesForm.valid) {
       this.coordinatesForm.markAllAsTouched();
+      return;
     }
+
+    const newPosition: L.LatLng = new L.LatLng(
+      Number(this.coordinatesForm.value.lat),
+      Number(this.coordinatesForm.value.lng)
+    );
+    this.mapService.changePosition(newPosition);
+    this.workingModeService.changeWorkingMode(
+      this.WorkingModeEnum.RealTimeModel
+    );
   }
 }

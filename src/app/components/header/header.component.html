@@ -1,5 +1,9 @@
 <nav>
-  <app-button [buttonText]="'Real-Time Model'"></app-button>
+  <app-button
+    [buttonText]="'Real-Time Model'"
+    (btnClick)="toggleRealTimeModel()"
+    [buttonWorkingMode]="WorkingModeEnum.RealTimeModel"
+  ></app-button>
   <app-button
     [buttonText]="'+'"
     (btnClick)="handleZoomInClicked()"
@@ -11,6 +15,11 @@
   <app-button
     [buttonText]="'Change cords'"
     (btnClick)="toggleChangePositionForm()"
+    [buttonWorkingMode]="WorkingModeEnum.ChangeCords"
   ></app-button>
-  <app-button [buttonText]="'Polygon Creator'"></app-button>
+  <app-button
+    [buttonText]="'Polygon Creator'"
+    (btnClick)="togglePolygonCreator()"
+    [buttonWorkingMode]="WorkingModeEnum.PolygonCreator"
+  ></app-button>
 </nav>

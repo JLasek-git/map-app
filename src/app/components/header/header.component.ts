@@ -1,4 +1,5 @@
-import { UiService } from './../../services/ui.service';
+import { WorkingModeService } from './../../services/working-mode.service';
+import { WorkingMode } from 'src/app/enums/working-mode';
 import { MapService } from './../../services/map.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(private mapService: MapService, private uiService: UiService) {}
+  WorkingModeEnum = WorkingMode;
+  currentWorkingMode: WorkingMode = WorkingMode.RealTimeModel;
 
-  ngOnInit(): void {}
+  constructor(
+    private mapService: MapService,
+    private workingModeService: WorkingModeService
+  ) {}
+
+  ngOnInit(): void {
+    this.workingModeService.onWorkingModeChange().subscribe((value) => {
+      this.currentWorkingMode = value;
+    });
+  }
 
   handleZoomInClicked(): void {
     this.mapService.zoomInClicked();
@@ -21,6 +32,21 @@ export class HeaderComponent implements OnInit {
   }
 
   toggleChangePositionForm(): void {
-    this.uiService.displayPositionForm();
+    this.currentWorkingMode = this.WorkingModeEnum.ChangeCords;
+    this.changeWorkingMode();
+  }
+
+  changeWorkingMode(): void {
+    this.workingModeService.changeWorkingMode(this.currentWorkingMode);
+  }
+
+  toggleRealTimeModel() {
+    this.currentWorkingMode = this.WorkingModeEnum.RealTimeModel;
+    this.changeWorkingMode();
+  }
+
+  togglePolygonCreator() {
+    this.currentWorkingMode = this.WorkingModeEnum.PolygonCreator;
+    this.changeWorkingMode();
   }
 }
