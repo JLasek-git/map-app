@@ -1,21 +1,45 @@
 <form
   *ngIf="showPositionForm"
+  class="position-form"
   [formGroup]="coordinatesForm"
   (ngSubmit)="onSubmit()"
 >
   <h2>Coordinates change</h2>
-  <input
-    type="text"
-    id="latitude"
-    placeholder="Latitude"
-    formControlName="lat"
-  />
-  <input
-    type="text"
-    id="longitude"
-    placeholder="Longitude"
-    formControlName="lng"
-  />
+  <div class="form-control">
+    <label for="latitude">Latitude</label>
+    <input
+      type="text"
+      id="latitude"
+      placeholder="Enter latitude"
+      formControlName="lat"
+    />
+    <div class="input-error-container">
+      <span
+        class="error-message"
+        *ngIf="latitude && latitude.invalid && latitude.touched"
+      >
+        Latitude is invalid
+      </span>
+    </div>
+  </div>
+  <div class="form-control">
+    <label for="longitude">Longitude</label>
+    <input
+      type="text"
+      id="longitude"
+      placeholder="Enter longitude"
+      formControlName="lng"
+    />
+    <div class="input-error-container">
+      <span
+        class="error-message"
+        *ngIf="longitude && longitude.invalid && longitude.touched"
+      >
+        Longitude is invalid
+      </span>
+    </div>
+  </div>
+
   <div class="buttons-container">
     <app-button [buttonText]="'Submit'"></app-button>
     <app-button [buttonText]="'Cancel'" (btnClick)="closeForm()"></app-button>

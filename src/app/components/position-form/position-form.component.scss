@@ -1,4 +1,4 @@
-form {
+.position-form {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -19,17 +19,56 @@ form {
     margin-top: 0;
   }
 
-  & input {
-    width: 80%;
-    height: 40px;
+  & .form-control {
     margin: 5px;
-    padding: 3px 7px;
-    font-size: 17px;
+    width: 80%;
+    & input {
+      width: 100%;
+      height: 40px;
+      padding: 3px 7px;
+      font-size: 17px;
+
+      &.ng-invalid {
+        &.ng-touched {
+          border: 1px solid red;
+          color: red;
+        }
+      }
+    }
+
+    & .input-error-container {
+      height: 15px;
+      font-size: 12px;
+      width: 100%;
+      color: red;
+      & .shake-error {
+        -webkit-animation: horizontal-shaking 0.4s both;
+        animation: horizontal-shaking 0.4s both;
+      }
+    }
   }
 
   & .buttons-container {
-    margin-top: 20px;
     display: flex;
+    margin-top: 15px;
     gap: 20px;
+  }
+}
+
+@keyframes horizontal-shaking {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(5px);
+  }
+  50% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(0);
   }
 }
