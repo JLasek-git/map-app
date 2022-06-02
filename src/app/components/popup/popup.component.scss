@@ -6,9 +6,9 @@
   min-width: 500px;
   height: fit-content;
   min-height: 250px;
-  background-color: #ffff;
+  background-color: var(--base-color);
   border-radius: 5px;
-  border: 2px solid #dbe4e9;
+  border: 2px solid var(--primary-color);
   z-index: 9999;
   padding: 20px;
   display: flex;

@@ -1,5 +1,5 @@
 .base-button {
-  background-color: #f2f5f7;
+  background-color: var(--accent-color);
   min-width: 140px;
   height: 30px;
   border: none;
@@ -8,10 +8,10 @@
   cursor: pointer;
 
   &:active {
-    background-color: #ffffff;
+    background-color: var(--base-color);
   }
 
   &.active {
-    background-color: #ffffff;
+    background-color: var(--base-color);
   }
 }
