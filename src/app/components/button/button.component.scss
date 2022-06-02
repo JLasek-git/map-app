@@ -1,6 +1,13 @@
 .base-button {
-  background-color: #ffff;
+  background-color: #f2f5f7;
   min-width: 140px;
   height: 30px;
+  border: none;
   border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+
+  &:active {
+    background-color: #ffffff;
+  }
 }
