@@ -3,6 +3,7 @@
   [formGroup]="coordinatesForm"
   (ngSubmit)="onSubmit()"
 >
+  <h2>Coordinates change</h2>
   <input
     type="text"
     id="latitude"
@@ -15,5 +16,8 @@
     placeholder="Longitude"
     formControlName="lng"
   />
-  <app-button [buttonText]="'Submit'"></app-button>
+  <div class="buttons-container">
+    <app-button [buttonText]="'Submit'"></app-button>
+    <app-button [buttonText]="'Cancel'" (btnClick)="closeForm()"></app-button>
+  </div>
 </form>

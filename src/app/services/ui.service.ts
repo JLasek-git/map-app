@@ -9,8 +9,13 @@ export class UiService {
   private subject = new Subject<any>();
   constructor() {}
 
-  togglePositionForm(): void {
-    this.showPositionForm = !this.showPositionForm;
+  closePositionForm(): void {
+    this.showPositionForm = false;
+    this.subject.next(this.showPositionForm);
+  }
+
+  displayPositionForm(): void {
+    this.showPositionForm = true;
     this.subject.next(this.showPositionForm);
   }
 

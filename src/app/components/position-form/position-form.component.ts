@@ -27,13 +27,16 @@ export class PositionFormComponent implements OnInit {
     });
   }
 
+  closeForm(): void {
+    this.uiService.closePositionForm();
+  }
+
   onSubmit(): void {
-    console.log(this.coordinatesForm);
     const newPosition: L.LatLng = new L.LatLng(
       Number(this.coordinatesForm.value.lat),
       Number(this.coordinatesForm.value.lng)
     );
     this.mapService.changePosition(newPosition);
-    this.uiService.togglePositionForm();
+    this.uiService.closePositionForm();
   }
 }

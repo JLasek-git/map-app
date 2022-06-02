@@ -21,6 +21,6 @@ export class HeaderComponent implements OnInit {
   }
 
   toggleChangePositionForm(): void {
-    this.uiService.togglePositionForm();
+    this.uiService.displayPositionForm();
   }
 }

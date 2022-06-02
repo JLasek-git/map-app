@@ -6,14 +6,14 @@ import * as L from 'leaflet';
   providedIn: 'root',
 })
 export class MapService {
-  private subject = new Subject<any>();
+  private zoomInSubject = new Subject<any>();
   private zoomOutSubject = new Subject<any>();
   private changePositionSubject = new Subject<any>();
 
   constructor() {}
 
   zoomInClicked(): void {
-    this.subject.next(1);
+    this.zoomInSubject.next(1);
   }
 
   zoomOutClicked(): void {
@@ -25,7 +25,7 @@ export class MapService {
   }
 
   onClick(): Observable<any> {
-    return this.subject.asObservable();
+    return this.zoomInSubject.asObservable();
   }
 
   onZoomOutClicked(): Observable<any> {
