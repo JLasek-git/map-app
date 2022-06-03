@@ -3,9 +3,8 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  min-width: 500px;
+  width: 500px;
   height: fit-content;
-  min-height: 250px;
   background-color: var(--base-color);
   border-radius: var(--base-border-radius);
   border: var(--base-border);
@@ -17,5 +16,9 @@
 
   & .popup-title {
     margin-top: 0;
+  }
+
+  @media (max-width: 500px) {
+    width: 100%;
   }
 }
