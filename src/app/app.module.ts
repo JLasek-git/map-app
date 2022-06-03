@@ -4,25 +4,25 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { ButtonComponent } from './components/button/button.component';
-import { HeaderComponent } from './components/header/header.component';
+import { UtilityBarComponent } from './components/utility-bar/utility-bar.component';
 import { MapComponent } from './components/map/map.component';
-import { PositionFormComponent } from './components/position-form/position-form.component';
+import { CoordinatesFormComponent } from './components/coordinates-form/coordinates-form.component';
 import { PopupComponent } from './components/popup/popup.component';
 import { MainLayoutComponent } from './components/main-layout/main-layout.component';
 import { ErrorMessageComponent } from './components/error-message/error-message.component';
-import { PolygonEditComponent } from './components/polygon-edit/polygon-edit.component';
+import { PolygonEditButtonComponent } from './components/polygon-edit-button/polygon-edit-button.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ButtonComponent,
-    HeaderComponent,
+    UtilityBarComponent,
     MapComponent,
-    PositionFormComponent,
+    CoordinatesFormComponent,
     PopupComponent,
     MainLayoutComponent,
     ErrorMessageComponent,
-    PolygonEditComponent,
+    PolygonEditButtonComponent,
   ],
   imports: [BrowserModule, ReactiveFormsModule],
   providers: [],

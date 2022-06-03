@@ -1,12 +1,6 @@
 <div class="app-container">
-  <app-header></app-header>
+  <app-utility-bar></app-utility-bar>
   <main class="content-container">
     <app-map></app-map>
-    <app-popup
-      *ngIf="currentWorkingMode === WorkingModeEnum.ChangeCords"
-      [popupHeader]="'Coordinates change'"
-    >
-      <app-position-form></app-position-form>
-    </app-popup>
   </main>
 </div>

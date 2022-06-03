@@ -1,7 +1,15 @@
 <div class="map-container">
-  <app-polygon-edit
+  <app-polygon-edit-button
     *ngIf="currentWorkingMode === WorkingModeEnum.PolygonCreator"
     (polygonEditModeChanged)="togglePolygonEditMode($event)"
-  ></app-polygon-edit>
+  ></app-polygon-edit-button>
+
+  <app-popup
+    *ngIf="currentWorkingMode === WorkingModeEnum.ChangeCords"
+    [popupHeader]="'Coordinates change'"
+  >
+    <app-coordinates-form></app-coordinates-form>
+  </app-popup>
+
   <div id="map"></div>
 </div>

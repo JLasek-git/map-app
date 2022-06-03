@@ -9,11 +9,12 @@ import { WorkingModeService } from './../../services/working-mode.service';
   styleUrls: ['./main-layout.component.scss'],
 })
 export class MainLayoutComponent implements OnInit, OnDestroy {
-  constructor(private workingModeService: WorkingModeService) {}
   currentWorkingMode!: WorkingMode;
   WorkingModeEnum = WorkingMode;
 
   workingModeSubscription!: Subscription;
+
+  constructor(private workingModeService: WorkingModeService) {}
 
   ngOnInit(): void {
     this.workingModeSubscription = this.workingModeService

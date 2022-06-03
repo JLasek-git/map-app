@@ -7,11 +7,11 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'app-polygon-edit',
-  templateUrl: './polygon-edit.component.html',
-  styleUrls: ['./polygon-edit.component.scss'],
+  selector: 'app-polygon-edit-button',
+  templateUrl: './polygon-edit-button.component.html',
+  styleUrls: ['./polygon-edit-button.component.scss'],
 })
-export class PolygonEditComponent implements OnInit, OnDestroy {
+export class PolygonEditButtonComponent implements OnInit, OnDestroy {
   @Output() polygonEditModeChanged: EventEmitter<boolean> = new EventEmitter();
   isPolygonEditActive: boolean = false;
 

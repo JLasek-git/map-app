@@ -1,15 +1,15 @@
 import { Subscription } from 'rxjs';
-import { WorkingModeService } from './../../services/working-mode.service';
+import { WorkingModeService } from '../../services/working-mode.service';
 import { WorkingMode } from 'src/app/enums/working-mode';
-import { MapService } from './../../services/map.service';
+import { MapService } from '../../services/map.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
+  selector: 'app-utility-bar',
+  templateUrl: './utility-bar.component.html',
+  styleUrls: ['./utility-bar.component.scss'],
 })
-export class HeaderComponent implements OnInit, OnDestroy {
+export class UtilityBarComponent implements OnInit, OnDestroy {
   WorkingModeEnum = WorkingMode;
   currentWorkingMode: WorkingMode = WorkingMode.RealTimeModel;
 

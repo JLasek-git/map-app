@@ -1,27 +1,27 @@
-import { shakeItem } from './../../utils/shakeItem';
-import { WorkingMode } from './../../enums/working-mode';
-import { WorkingModeService } from './../../services/working-mode.service';
+import { shakeItem } from '../../utils/shakeItem';
+import { WorkingMode } from '../../enums/working-mode';
+import { WorkingModeService } from '../../services/working-mode.service';
 import { Subscription } from 'rxjs';
-import { MapService } from './../../services/map.service';
+import { MapService } from '../../services/map.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import * as L from 'leaflet';
 
 @Component({
-  selector: 'app-position-form',
-  templateUrl: './position-form.component.html',
-  styleUrls: ['./position-form.component.scss'],
+  selector: 'app-coordinates-form',
+  templateUrl: './coordinates-form.component.html',
+  styleUrls: ['./coordinates-form.component.scss'],
 })
-export class PositionFormComponent implements OnInit, OnDestroy {
+export class CoordinatesFormComponent implements OnInit, OnDestroy {
   coordinatesForm: FormGroup = new FormGroup({
     lng: new FormControl('', [Validators.required]),
     lat: new FormControl('', [Validators.required]),
   });
-  showPositionForm!: boolean;
+  showCoordinatesForm!: boolean;
   currentWorkingMode!: WorkingMode;
   WorkingModeEnum = WorkingMode;
 
-  positionFormSubscription!: Subscription;
+  coordinatesFormSubscription!: Subscription;
   workingModeSubscription!: Subscription;
 
   constructor(
