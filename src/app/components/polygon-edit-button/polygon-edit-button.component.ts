@@ -21,7 +21,6 @@ export class PolygonEditButtonComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.handlePolygonEditModeClose();
-    console.log(this.isPolygonEditActive);
   }
 
   handlePolygonEditModeChange(): void {
