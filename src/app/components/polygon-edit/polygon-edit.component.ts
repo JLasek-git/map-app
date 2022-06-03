@@ -1,4 +1,15 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { WorkingModeService } from './../../services/working-mode.service';
+import { Subscription } from 'rxjs';
+import { WorkingMode } from './../../enums/working-mode';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 
 @Component({
   selector: 'app-polygon-edit',
@@ -6,17 +17,26 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./polygon-edit.component.scss'],
 })
 export class PolygonEditComponent implements OnInit {
-  @Output() polygonEditButtonClicked: EventEmitter<boolean> =
-    new EventEmitter();
-
+  @Output() polygonEditModeChanged: EventEmitter<boolean> = new EventEmitter();
   isPolygonEditActive: boolean = false;
 
-  constructor() {}
+  workingModeSubscription!: Subscription;
 
-  ngOnInit(): void {}
+  constructor(private workingModeService: WorkingModeService) {}
 
-  handlePolygonEditClick(): void {
+  ngOnInit(): void {
+    this.workingModeSubscription = this.workingModeService
+      .onWorkingModeChange()
+      .subscribe((value) => {
+        if (value !== WorkingMode.PolygonCreator) {
+          this.isPolygonEditActive = false;
+          this.handlePolygonEditModeChange();
+        }
+      });
+  }
+
+  handlePolygonEditModeChange(): void {
     this.isPolygonEditActive = !this.isPolygonEditActive;
-    this.polygonEditButtonClicked.emit(this.isPolygonEditActive);
+    this.polygonEditModeChanged.emit(this.isPolygonEditActive);
   }
 }

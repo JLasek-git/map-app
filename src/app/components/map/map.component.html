@@ -1,7 +1,7 @@
 <div class="map-container">
   <app-polygon-edit
     *ngIf="currentWorkingMode === WorkingModeEnum.PolygonCreator"
-    (polygonEditButtonClicked)="togglePolygonEditMode($event)"
+    (polygonEditModeChanged)="togglePolygonEditMode($event)"
   ></app-polygon-edit>
   <div id="map"></div>
 </div>
