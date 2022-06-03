@@ -51,11 +51,12 @@ export class MapComponent implements OnInit, OnDestroy {
       .onWorkingModeChange()
       .subscribe((value) => {
         this.currentWorkingMode = value;
-        this.isPolygonEditActive = false;
         if (value !== WorkingMode.PolygonCreator) {
           this.disableDrawPolygon();
           return;
         }
+
+        this.map.pm.disableGlobalEditMode();
         this.enableDrawPolygon();
       });
   }
@@ -89,6 +90,10 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   disableDrawPolygon(): void {
+    if (this.currentWorkingMode !== WorkingMode.PolygonCreator) {
+      this.isPolygonEditActive = false;
+      this.map.pm.disableGlobalEditMode();
+    }
     this.map.pm.disableDraw();
   }
 
