@@ -1,3 +1,4 @@
+import { shakeItem } from './../../utils/shakeItem';
 import { WorkingMode } from './../../enums/working-mode';
 import { WorkingModeService } from './../../services/working-mode.service';
 import { Subscription } from 'rxjs';
@@ -58,6 +59,7 @@ export class PositionFormComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     if (!this.coordinatesForm.valid) {
       this.coordinatesForm.markAllAsTouched();
+      shakeItem('input-error-container');
       return;
     }
 
