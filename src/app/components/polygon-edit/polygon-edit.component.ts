@@ -1,15 +1,7 @@
 import { WorkingModeService } from './../../services/working-mode.service';
 import { Subscription } from 'rxjs';
 import { WorkingMode } from './../../enums/working-mode';
-import {
-  Component,
-  OnInit,
-  Input,
-  Output,
-  EventEmitter,
-  OnChanges,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-polygon-edit',
