@@ -1,6 +1,9 @@
+import { WorkingMode } from './../../enums/working-mode';
+import { WorkingModeService } from './../../services/working-mode.service';
 import { MapService } from './../../services/map.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import * as L from 'leaflet';
+import '@geoman-io/leaflet-geoman-free';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -10,12 +13,19 @@ import { Subscription } from 'rxjs';
 })
 export class MapComponent implements OnInit, OnDestroy {
   map!: L.Map;
+  currentWorkingMode!: WorkingMode;
+  WorkingModeEnum = WorkingMode;
+  isPolygonEditActive: boolean = false;
 
   zoomInSubscription!: Subscription;
   zoomOutSubscription!: Subscription;
   changePositionSubsciption!: Subscription;
+  workingModeChangeSubscription!: Subscription;
 
-  constructor(private mapService: MapService) {}
+  constructor(
+    private mapService: MapService,
+    private workingModeService: WorkingModeService
+  ) {}
 
   ngOnInit(): void {
     this.initMap();
@@ -36,12 +46,48 @@ export class MapComponent implements OnInit, OnDestroy {
       .subscribe((value) => {
         this.map.panTo(value);
       });
+
+    this.workingModeChangeSubscription = this.workingModeService
+      .onWorkingModeChange()
+      .subscribe((value) => {
+        this.currentWorkingMode = value;
+        if (value !== WorkingMode.PolygonCreator) {
+          this.disableDrawPolygon();
+          return;
+        }
+        this.enableDrawPolygon();
+      });
   }
 
   ngOnDestroy(): void {
     this.zoomInSubscription.unsubscribe();
     this.zoomOutSubscription.unsubscribe();
     this.changePositionSubsciption.unsubscribe();
+  }
+
+  enableDrawPolygon(): void {
+    this.map.pm.enableDraw('Polygon', {
+      snappable: true,
+      snapDistance: 20,
+      continueDrawing: true,
+      allowSelfIntersection: true,
+      tooltips: false,
+    });
+  }
+
+  togglePolygonEditMode(): void {
+    this.isPolygonEditActive = !this.isPolygonEditActive;
+    this.map.pm.toggleGlobalEditMode();
+
+    if (this.isPolygonEditActive) {
+      this.disableDrawPolygon();
+    } else {
+      this.enableDrawPolygon();
+    }
+  }
+
+  disableDrawPolygon(): void {
+    this.map.pm.disableDraw();
   }
 
   private initMap(): void {

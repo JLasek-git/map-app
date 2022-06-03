@@ -3,4 +3,30 @@
   & #map {
     height: 100%;
   }
+
+  & .absolute-circle-btn {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 30px;
+    top: 60px;
+    width: 35px;
+    height: 35px;
+    border-radius: 5px;
+    z-index: 9999;
+    border: 2px solid var(--primary-color);
+    background-color: var(--accent-color);
+
+    & .polyline-edit-icon {
+      width: 22px;
+      height: 22px;
+    }
+
+    &.active {
+      -webkit-box-shadow: inset 0px 0px 15px 5px var(--box-shadow-color);
+      box-shadow: inset 0px 0px 15px 5px var(--box-shadow-color);
+    }
+  }
 }
