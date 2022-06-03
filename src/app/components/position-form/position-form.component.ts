@@ -60,6 +60,7 @@ export class PositionFormComponent implements OnInit, OnDestroy {
     if (!this.coordinatesForm.valid) {
       this.coordinatesForm.markAllAsTouched();
       shakeItem('input-error-container');
+
       return;
     }
 

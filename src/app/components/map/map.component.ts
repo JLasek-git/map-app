@@ -77,8 +77,8 @@ export class MapComponent implements OnInit, OnDestroy {
     });
   }
 
-  togglePolygonEditMode(): void {
-    this.isPolygonEditActive = !this.isPolygonEditActive;
+  togglePolygonEditMode(isEditActive: boolean): void {
+    this.isPolygonEditActive = isEditActive;
     this.map.pm.toggleGlobalEditMode();
 
     if (this.isPolygonEditActive) {

@@ -1,16 +1,7 @@
 <div class="map-container">
-  <button
+  <app-polygon-edit
     *ngIf="currentWorkingMode === WorkingModeEnum.PolygonCreator"
-    [ngClass]="{ active: isPolygonEditActive }"
-    class="absolute-circle-btn"
-    (click)="togglePolygonEditMode()"
-    title="Polygon edit mode"
-  >
-    <img
-      src="../../../assets/polygon-edit.svg"
-      class="polygon-edit-icon"
-      alt="Polygon edit"
-    />
-  </button>
+    (polygonEditButtonClicked)="togglePolygonEditMode($event)"
+  ></app-polygon-edit>
   <div id="map"></div>
 </div>

@@ -1,0 +1,29 @@
+.absolute-circle-btn {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 30px;
+  top: 60px;
+  width: 35px;
+  height: 35px;
+  border-radius: var(--base-border-radius);
+  z-index: 9999;
+  border: var(--base-border);
+  background-color: var(--accent-color);
+
+  & .polygon-edit-icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  &.active {
+    -webkit-box-shadow: inset 0px 0px 15px 5px var(--box-shadow-color);
+    box-shadow: inset 0px 0px 15px 5px var(--box-shadow-color);
+  }
+
+  @media (max-width: 740px) {
+    top: 120px;
+  }
+}

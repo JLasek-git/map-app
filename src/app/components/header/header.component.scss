@@ -5,4 +5,9 @@ nav {
   display: flex;
   justify-content: center;
   gap: 5px;
+
+  @media (max-width: 740px) {
+    height: var(--mobile-header-height);
+    flex-wrap: wrap;
+  }
 }

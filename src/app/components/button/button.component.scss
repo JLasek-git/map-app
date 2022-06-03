@@ -14,4 +14,9 @@
   &.active {
     background-color: var(--base-color);
   }
+
+  @media (max-width: 450px) {
+    min-width: 100px;
+    font-size: 12px;
+  }
 }

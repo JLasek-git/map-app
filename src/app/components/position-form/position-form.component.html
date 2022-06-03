@@ -11,14 +11,12 @@
       placeholder="Enter latitude"
       formControlName="lat"
     />
-    <div class="input-error-container">
-      <span
-        class="error-message"
-        *ngIf="latitude && latitude.invalid && latitude.touched"
-      >
-        Latitude is invalid
-      </span>
-    </div>
+    <app-error-message
+      [errorMessageVisible]="
+        latitude && latitude.invalid && latitude.touched ? true : false
+      "
+      errorMessageText="Latitude is invalid!"
+    ></app-error-message>
   </div>
   <div class="form-control">
     <label for="longitude">Longitude</label>
@@ -28,14 +26,12 @@
       placeholder="Enter longitude"
       formControlName="lng"
     />
-    <div class="input-error-container">
-      <span
-        class="error-message"
-        *ngIf="longitude && longitude.invalid && longitude.touched"
-      >
-        Longitude is invalid
-      </span>
-    </div>
+    <app-error-message
+      [errorMessageVisible]="
+        longitude && longitude.invalid && longitude.touched ? true : false
+      "
+      errorMessageText="Longitude is invalid!"
+    ></app-error-message>
   </div>
 
   <div class="buttons-container">
