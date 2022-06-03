@@ -1,6 +1,3 @@
-import { WorkingModeService } from './../../services/working-mode.service';
-import { Subscription } from 'rxjs';
-import { WorkingMode } from './../../enums/working-mode';
 import {
   Component,
   OnInit,
@@ -18,23 +15,12 @@ export class PolygonEditComponent implements OnInit, OnDestroy {
   @Output() polygonEditModeChanged: EventEmitter<boolean> = new EventEmitter();
   isPolygonEditActive: boolean = false;
 
-  workingModeSubscription!: Subscription;
+  constructor() {}
 
-  constructor(private workingModeService: WorkingModeService) {}
-
-  ngOnInit(): void {
-    this.workingModeSubscription = this.workingModeService
-      .onWorkingModeChange()
-      .subscribe((value) => {
-        if (value !== WorkingMode.PolygonCreator) {
-          this.isPolygonEditActive = false;
-          this.handlePolygonEditModeChange();
-        }
-      });
-  }
+  ngOnInit(): void {}
 
   ngOnDestroy(): void {
-    this.workingModeSubscription.unsubscribe();
+    this.handlePolygonEditModeChange();
   }
 
   handlePolygonEditModeChange(): void {
