@@ -11,6 +11,7 @@ import { PopupComponent } from './components/popup/popup.component';
 import { MainLayoutComponent } from './components/main-layout/main-layout.component';
 import { ErrorMessageComponent } from './components/error-message/error-message.component';
 import { PolygonEditButtonComponent } from './components/polygon-edit-button/polygon-edit-button.component';
+import { BackdropComponent } from './components/backdrop/backdrop.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { PolygonEditButtonComponent } from './components/polygon-edit-button/pol
     MainLayoutComponent,
     ErrorMessageComponent,
     PolygonEditButtonComponent,
+    BackdropComponent,
   ],
   imports: [BrowserModule, ReactiveFormsModule],
   providers: [],

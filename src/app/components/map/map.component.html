@@ -4,12 +4,11 @@
     (polygonEditModeChanged)="togglePolygonEditMode($event)"
   ></app-polygon-edit-button>
 
-  <app-popup
-    *ngIf="currentWorkingMode === WorkingModeEnum.ChangeCords"
-    [popupHeader]="'Coordinates change'"
-  >
-    <app-coordinates-form></app-coordinates-form>
-  </app-popup>
+  <app-backdrop *ngIf="currentWorkingMode === WorkingModeEnum.ChangeCords">
+    <app-popup [popupHeader]="'Coordinates change'">
+      <app-coordinates-form></app-coordinates-form>
+    </app-popup>
+  </app-backdrop>
 
   <div id="map"></div>
 </div>
