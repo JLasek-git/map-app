@@ -1,9 +1,13 @@
-nav {
+header {
+  position: absolute;
+  left: 0;
+  right: 0;
   background-color: var(--primary-color);
   height: var(--header-height);
   padding: 10px;
   display: flex;
   justify-content: center;
+  z-index: 999;
   gap: 5px;
 
   @media (max-width: 740px) {

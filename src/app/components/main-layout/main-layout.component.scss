@@ -3,10 +3,6 @@
   height: 100%;
   .content-container {
     width: 100%;
-    height: calc(100% - var(--header-height));
-
-    @media (max-width: 740px) {
-      height: calc(100% - var(--mobile-header-height));
-    }
+    height: 100%;
   }
 }
