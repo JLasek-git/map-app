@@ -51,6 +51,7 @@ export class MapComponent implements OnInit, OnDestroy {
       .onWorkingModeChange()
       .subscribe((value) => {
         this.currentWorkingMode = value;
+        this.isPolygonEditActive = false;
         if (value !== WorkingMode.PolygonCreator) {
           this.disableDrawPolygon();
           return;
@@ -96,6 +97,14 @@ export class MapComponent implements OnInit, OnDestroy {
       [50.090683, 19.974544],
       14
     );
+
+    this.map.on('pm:create', (e) => {
+      const layer = e.layer;
+
+      if (layer instanceof L.Polygon) {
+        layer.setStyle({ fillColor: 'transparent' });
+      }
+    });
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution:

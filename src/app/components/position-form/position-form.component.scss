@@ -13,6 +13,8 @@
       height: 40px;
       padding: 3px 7px;
       font-size: 17px;
+      border-radius: var(--base-border-radius);
+      border: var(--base-border);
 
       &.ng-invalid {
         &.ng-touched {
