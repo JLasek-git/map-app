@@ -3,7 +3,7 @@
   min-width: 140px;
   height: 30px;
   border: none;
-  border-radius: 5px;
+  border-radius: var(--base-border-radius);
   font-weight: bold;
   cursor: pointer;
 

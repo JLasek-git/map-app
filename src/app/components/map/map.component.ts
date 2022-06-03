@@ -63,6 +63,7 @@ export class MapComponent implements OnInit, OnDestroy {
     this.zoomInSubscription.unsubscribe();
     this.zoomOutSubscription.unsubscribe();
     this.changePositionSubsciption.unsubscribe();
+    this.workingModeChangeSubscription.unsubscribe();
   }
 
   enableDrawPolygon(): void {
@@ -91,15 +92,12 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   private initMap(): void {
-    this.map = L.map('map', {
-      center: [50.090683, 19.974544],
-      zoom: 14,
-      zoomControl: false,
-    });
+    this.map = L.map('map', { zoomControl: false }).setView(
+      [50.090683, 19.974544],
+      14
+    );
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 18,
-      minZoom: 10,
       attribution:
         '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(this.map);

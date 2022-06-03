@@ -16,7 +16,7 @@
 
       &.ng-invalid {
         &.ng-touched {
-          border: 1px solid var(--error-color);
+          border: var(--error-border);
           color: var(--error-color);
         }
       }

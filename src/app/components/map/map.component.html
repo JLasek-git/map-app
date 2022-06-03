@@ -4,8 +4,13 @@
     [ngClass]="{ active: isPolygonEditActive }"
     class="absolute-circle-btn"
     (click)="togglePolygonEditMode()"
+    title="Polygon edit mode"
   >
-    <img src="../../../assets/polygon-edit.svg" class="polyline-edit-icon" />
+    <img
+      src="../../../assets/polygon-edit.svg"
+      class="polygon-edit-icon"
+      alt="Polygon edit"
+    />
   </button>
   <div id="map"></div>
 </div>
